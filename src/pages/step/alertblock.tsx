@@ -1,10 +1,10 @@
-import { ECharts, EChartOption } from 'echarts'
+import { ECharts } from 'echarts'
 import { getBaseConfig } from '@/config/basechart'
 import { poolList } from '@/pages/components/pool';
 import { normalLines } from '@/pages/components/normallines';
 import { p2pLines } from '@/pages/components/p2plines';
-import { unknow, yellowPoint } from '@/pages/components/unknow';
-import { unkonwCorrdinate, poolCoordinate } from '@/config/poolcoordinate';
+import {  yellowPoint } from '@/pages/components/unknow';
+import {  poolCoordinate } from '@/config/poolcoordinate';
 import { defaultStep } from './default';
 import { p2pRedLines } from '@/pages/components/p2predlines';
 

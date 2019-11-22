@@ -1,5 +1,5 @@
 import { EChartOption } from 'echarts';
-import { poolCoordinate, unkonwCorrdinate } from '@/config/poolcoordinate';
+import { unkonwCorrdinate } from '@/config/poolcoordinate';
 export const unknow: EChartOption.SeriesEffectScatter = {
     type: 'effectScatter',
     zlevel: 20,

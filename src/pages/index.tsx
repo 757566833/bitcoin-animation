@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button } from 'antd';
 import echarts from './components/echart';
-import { ECharts, EChartOption } from 'echarts';
+import { ECharts } from 'echarts';
 import './index.less';
 import { poolList } from './components/pool';
 import { normalLines } from './components/normallines';
-import { p2pLines } from './components/p2plines';
 import { getBaseConfig } from '@/config/basechart';
 import { transaction } from './step/transaction';
 import { connect } from 'react-redux';

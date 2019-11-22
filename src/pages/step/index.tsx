@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styles from './index.css';
 // import { useSelector, useDispatch } from 'react-redux'
 // import * as store from './store'
-const Step = props => {
+const Step = (props:any) => {
   // const dispatch = useDispatch();
   // 如果不关注callback 这两个是不需要使用的
   // const xxx = useSelector(useCallback((storeData: store.IStoreData) => storeData.xxx, []))

@@ -1,4 +1,4 @@
-import { ECharts, EChartOption } from 'echarts'
+import { ECharts } from 'echarts'
 import { getBaseConfig } from '@/config/basechart'
 import { poolList } from '@/pages/components/pool';
 import { normalLines } from '@/pages/components/normallines';
