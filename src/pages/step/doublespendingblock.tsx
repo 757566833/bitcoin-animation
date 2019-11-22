@@ -3,7 +3,7 @@ import { getBaseConfig } from '@/config/basechart'
 import { poolList } from '@/pages/components/pool';
 import { normalLines } from '@/pages/components/normallines';
 import { p2pLines } from '@/pages/components/p2plines';
-import { unknow } from '@/pages/components/unknow';
+import { unknow, yellowPoint } from '@/pages/components/unknow';
 import { unkonwCorrdinate, poolCoordinate } from '@/config/poolcoordinate';
 import { defaultStep } from './default';
 import { p2pRedLines } from '@/pages/components/p2predlines';
@@ -11,31 +11,24 @@ import { p2pRedLines } from '@/pages/components/p2predlines';
 
 
 const step1 = (eCharts: ECharts, cb: (step: number) => void) => {
-    const baseConfig = getBaseConfig();
-    // unknow交易
-    baseConfig.series = [
-        poolList,
-        normalLines,
-        unknow
-    ]
-    eCharts.setOption(baseConfig)
+    // const baseConfig = getBaseConfig();
+    // // unknow交易
+    // baseConfig.series = [
+    //     poolList,
+    //     normalLines,
+    //     unknow
+    // ]
+    // eCharts.setOption(baseConfig)
     cb(1)
 }
 
 const step2 = (eCharts: ECharts, cb: (step: number) => void) => {
     const baseConfig = getBaseConfig();
     // 交易发给中国矿池
-    const p2p = p2pLines([
-        {
-            name: '1',
-            coords: [unkonwCorrdinate.transaction, poolCoordinate.中国某矿池],
-        }
-    ])
     baseConfig.series = [
         poolList,
         normalLines,
-        unknow,
-        p2p
+        yellowPoint(poolCoordinate.中国某矿池)
     ]
     eCharts.setOption(baseConfig)
     cb(2)
@@ -61,14 +54,14 @@ const step3 = (eCharts: ECharts, cb: (step: number) => void) => {
             coords: [poolCoordinate.中国某矿池, poolCoordinate.澳大利亚某矿池],
         },
         {
-            name: '33',
+            name: '14',
             coords: [poolCoordinate.中国某矿池, poolCoordinate.英国某矿池],
-        }
+        },
+        
     ])
     baseConfig.series = [
         poolList,
         normalLines,
-        unknow,
         p2p
     ]
     eCharts.setOption(baseConfig)
@@ -98,13 +91,13 @@ const step4 = (eCharts: ECharts, cb: (step: number) => void) => {
     baseConfig.series = [
         poolList,
         normalLines,
-        unknow,
         p2p
     ]
     eCharts.setOption(baseConfig)
     cb(4)
 }
 const step5 = (eCharts: ECharts, cb: (step: number) => void) => {
+
     const baseConfig = getBaseConfig();
     const p2p = p2pRedLines([
         {
@@ -132,6 +125,7 @@ const step5 = (eCharts: ECharts, cb: (step: number) => void) => {
     ]
 
     eCharts.setOption(baseConfig)
+
     cb(5)
 }
 const step6 = (eCharts: ECharts, cb: (step: number) => void) => {
@@ -144,7 +138,7 @@ const step6 = (eCharts: ECharts, cb: (step: number) => void) => {
     return
 }
 const step = [step1, step2, step3, step4, step5, step6];
-export const transaction = (eCharts: ECharts| null, cb: (step: number) => void ) => {
+export const doubleSpendingBlock = (eCharts: ECharts| null, cb: (step: number) => void ) => {
     if (eCharts) {
         for (let index = 0; index < step.length; index++) {
             if (index === 0) {

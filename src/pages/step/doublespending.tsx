@@ -29,6 +29,10 @@ const step2 = (eCharts: ECharts, cb: (step: number) => void) => {
         {
             name: '1',
             coords: [unkonwCorrdinate.transaction, poolCoordinate.中国某矿池],
+        },
+        {
+            name: '2',
+            coords: [unkonwCorrdinate.transaction, poolCoordinate.英国某矿池],
         }
     ])
     baseConfig.series = [
@@ -61,24 +65,6 @@ const step3 = (eCharts: ECharts, cb: (step: number) => void) => {
             coords: [poolCoordinate.中国某矿池, poolCoordinate.澳大利亚某矿池],
         },
         {
-            name: '33',
-            coords: [poolCoordinate.中国某矿池, poolCoordinate.英国某矿池],
-        }
-    ])
-    baseConfig.series = [
-        poolList,
-        normalLines,
-        unknow,
-        p2p
-    ]
-    eCharts.setOption(baseConfig)
-    cb(3)
-}
-const step4 = (eCharts: ECharts, cb: (step: number) => void) => {
-    const baseConfig = getBaseConfig();
-    // 交易发给中国矿池
-    const p2p = p2pLines([
-        {
             name: '21',
             coords: [poolCoordinate.英国某矿池, poolCoordinate.格陵兰岛某矿池],
         },
@@ -94,6 +80,24 @@ const step4 = (eCharts: ECharts, cb: (step: number) => void) => {
             name: '24',
             coords: [poolCoordinate.英国某矿池, poolCoordinate.巴西某矿池],
         },
+    ])
+    baseConfig.series = [
+        poolList,
+        normalLines,
+        unknow,
+        p2p
+    ]
+    eCharts.setOption(baseConfig)
+    cb(3)
+}
+const step4 = (eCharts: ECharts, cb: (step: number) => void) => {
+    const baseConfig = getBaseConfig();
+    // 交易发给中国矿池
+    const p2p = p2pRedLines([
+        {
+            name: '21',
+            coords: [poolCoordinate.中国某矿池, poolCoordinate.英国某矿池],
+        }
     ])
     baseConfig.series = [
         poolList,
@@ -144,7 +148,7 @@ const step6 = (eCharts: ECharts, cb: (step: number) => void) => {
     return
 }
 const step = [step1, step2, step3, step4, step5, step6];
-export const transaction = (eCharts: ECharts| null, cb: (step: number) => void ) => {
+export const doubleSpending = (eCharts: ECharts| null, cb: (step: number) => void ) => {
     if (eCharts) {
         for (let index = 0; index < step.length; index++) {
             if (index === 0) {

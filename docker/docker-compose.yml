@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    restart: always
+    image: node:latest
+    working_dir: /src
+    ports:
+    - "3000:3000"
+    volumes:
+    - ../:/src
+    entrypoint: bash -c "node bit-animation.js"

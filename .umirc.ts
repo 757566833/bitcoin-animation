@@ -34,7 +34,7 @@ const config: IConfig = {
     }],
     ['umi-plugin-auto', {
       server: {
-        name: 'workflow-client',
+        name: 'bit-animation',
         port: 3000,
         docker: true
       },

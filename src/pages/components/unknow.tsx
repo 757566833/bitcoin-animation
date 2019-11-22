@@ -15,3 +15,21 @@ export const unknow: EChartOption.SeriesEffectScatter = {
         unkonwCorrdinate.transaction
     ],
 }
+
+export const yellowPoint = (point:[number,number])=>{
+    return {
+        type: 'effectScatter',
+        zlevel: 20,
+        coordinateSystem: 'geo',
+        rippleEffect: {
+            brushType: 'stroke' // 波纹绘制效果
+        },
+        itemStyle: {
+            color: '#FFA200'
+        },
+    
+        data: [
+            point
+        ],
+    }
+}

@@ -5,7 +5,7 @@ export const p2pRedLines: (data: EChartOption.SeriesLines.DataObject[]) => EChar
         zlevel: 30,
         effect: {
             show: true,
-            period: 3,
+            period: 6,
             trailLength: 0.7,
             color: '#DC143C',
             symbolSize: 10

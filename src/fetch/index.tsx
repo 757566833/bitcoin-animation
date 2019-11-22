@@ -2,7 +2,7 @@ type IMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 type ICommonFetch = <T extends { [key: string]: number | string }>(method: IMethod, url: string, parameter: T) => Promise<{ headers: Headers, text: string } | number>
 export const commonFetch: ICommonFetch = async (method, url = '', parameter) => {
     let requestUrl = '';
-    if (method == 'GET') {
+    if (method === 'GET') {
         let parameterStr = '?';
         if (parameter) {
             for (const key in parameter) {
@@ -20,7 +20,7 @@ export const commonFetch: ICommonFetch = async (method, url = '', parameter) => 
         method,
         headers: { 'Content-Type': 'application/json' }
     }
-    if (method != 'GET') {
+    if (method !== 'GET') {
         requestInit.body = JSON.stringify(parameter);
     }
 
