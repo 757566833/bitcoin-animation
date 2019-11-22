@@ -14,8 +14,6 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@antv/data-set": "^0.10.2",
-    "@antv/g2": "^3.5.11",
     "@types/echarts": "^4.4.1",
     "@types/jest": "^23.3.12",
     "@types/react": "^16.7.18",
@@ -38,8 +36,7 @@
     "umi": "^2.9.0",
     "umi-plugin-auto": "^0.0.28",
     "umi-plugin-react": "^1.8.0",
-    "umi-types": "^0.3.0",
-    "webpack-bundle-analyzer": "^3.6.0"
+    "umi-types": "^0.3.0"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
