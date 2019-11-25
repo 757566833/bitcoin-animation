@@ -8,4 +8,4 @@ services:
     - "3000:3000"
     volumes:
     - ../:/src
-    entrypoint: bash -c "node bit-animation.js"
+    entrypoint: bash -c "npm install -production && node bit-animation.js"

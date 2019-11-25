@@ -290,11 +290,13 @@ class App extends React.Component<IProps, IState> {
     })
     const aaa = (arr: string[]) => {
       return arr.map((t) => {
-        // tslint:disable-next-line: jsx-wrap-multiline
-        return <>
-          <div>{t}</div>
-          <div style={{ width: 1, height: '100%', backgroundColor: 'red' }} />
-        </>
+        const style = { width: 1, height: '100%', backgroundColor: 'red' };
+        return (
+          <>
+            <div>{t}</div>
+            <div style={style} />
+          </>
+        )
       })
     }
     const memoryElement = this.state.memory.map((item, index) => {
