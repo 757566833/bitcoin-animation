@@ -130,8 +130,6 @@ const step5 = (eCharts: ECharts, cb: (step: number) => void) => {
 }
 const step6 = (eCharts: ECharts, cb: (step: number) => void) => {
     const baseConfig = getBaseConfig();
-    baseConfig.series = [];
-    eCharts.setOption(baseConfig)
     baseConfig.series = defaultStep();
     eCharts.setOption(baseConfig)
     cb(6)

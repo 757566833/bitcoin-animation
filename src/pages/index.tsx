@@ -17,7 +17,9 @@ interface IState {
   buttonIndex: number,
   text: string[],
   memory: (string[] | string)[],
-  newBlock: boolean
+  newBlock: boolean,
+  isAloneBlock: boolean,
+  baxiNewBlock: boolean,
 }
 
 class App extends React.Component<IProps, IState> {
@@ -32,7 +34,9 @@ class App extends React.Component<IProps, IState> {
     buttonIndex: 0,
     text: [],
     memory: [],
-    newBlock: false
+    newBlock: false,
+    isAloneBlock: false,
+    baxiNewBlock: false
   }
 
   componentDidMount = () => {
@@ -224,6 +228,11 @@ class App extends React.Component<IProps, IState> {
             newBlock: true
           })
         }
+        if (index === 4) {
+          this.setState({
+            memory: []
+          })
+        }
         if (index === 6) {
           this.setState({
             newBlock: false
@@ -235,7 +244,128 @@ class App extends React.Component<IProps, IState> {
   aloneBlock = () => {
     this.setState({
       text: [],
-      memory: []
+      memory: [],
+      isAloneBlock: true,
+      baxiNewBlock: true
+    }, () => {
+      aloneBlock(this.chart ? this.chart : null, (index) => {
+        const text = [...this.state.text]
+        let memory = [...this.state.memory] as string[]
+        switch (index) {
+          case 1:
+            text.push('假设巴西某矿池先出了一个块，但是由于种种原因没通知到其他矿池')
+            break;
+          case 2:
+            text.push('这时候中国某矿池出了块')
+            break;
+          case 3:
+            text.push('中国某节点，把自己内存池的交易打包，自己内存池的nonce放到head头中，组成hash，发送到矿池配置好的节点')
+            memory = []
+            break;
+          case 4:
+            text.push('二级节点验证无误后，替换算法中的hash，重新计算，继续向下通知')
+            break;
+          case 5:
+            text.push('下级节点通知到已有此块hash信息的节点时，包含此hash的节点不再继续通知')
+            break;
+          case 6:
+
+            break;
+
+          default:
+            break;
+        }
+        this.setState({
+          text,
+          memory
+        })
+        if (index === 3) {
+          this.setState({
+            newBlock: true
+          })
+        }
+        if (index === 6) {
+          this.setState({
+            newBlock: false
+          })
+        }
+      })
+    })
+  }
+  qq = () => {
+    this.setState({
+      text: [],
+      memory: [],
+    }, () => {
+      alertblock(this.chart ? this.chart : null, (index) => {
+        const text = [...this.state.text]
+        let memory = [...this.state.memory] as string[]
+        switch (index) {
+          case 1:
+            text.push('假设内存迟里面有数据')
+            memory = [
+              '用户a------心悦5',
+              '用户b------心悦1',
+              '用户c------普通',
+              '用户d------心悦4',
+              '用户e------心悦5',
+              '用户f------普通'
+            ]
+            break;
+          case 2:
+            text.push('这时候鹅厂矿池出了块,内存池的交易排序，vip优先原则，');
+            memory = [
+              '用户a------心悦5',
+              '用户b------心悦1',
+              '用户d------心悦4',
+              '用户e------心悦5',
+              '用户c------普通',
+              '用户f------普通'
+            ]
+            break;
+          case 3:
+            text.push('鹅厂nonce放到head头中，组成hash，发送到矿池配置好的节点')
+            memory = [
+              '用户c------普通',
+              '用户f------普通'
+            ]
+            break;
+          case 4:
+            text.push('二级节点验证无误后，替换算法中的hash，重新计算，继续向下通知，以后的节点掠过')
+            break;
+          case 5:
+            text.push('这时候巴西某矿池想通知其他节点，已经晚了')
+            break;
+          case 6:
+
+            break;
+
+          default:
+            break;
+        }
+        this.setState({
+          text,
+          memory
+        })
+        if (index === 3) {
+          this.setState({
+            newBlock: true
+          })
+        }
+        if (index === 6) {
+          this.setState({
+            newBlock: false
+          })
+        }
+      })
+    })
+  }
+  wangyi = () => {
+    this.setState({
+      text: [],
+      memory: [],
+      isAloneBlock: true,
+      baxiNewBlock: true
     }, () => {
       aloneBlock(this.chart ? this.chart : null, (index) => {
         const text = [...this.state.text]
@@ -281,11 +411,21 @@ class App extends React.Component<IProps, IState> {
       })
     })
   }
+  step0=()=>{
+    this.setState({
+      buttonIndex:0
+    })
+  }
+  step1=()=>{
+    this.setState({
+      buttonIndex:1
+    })
+  }
   render() {
     const { buttonIndex } = this.state
     const textElement = this.state.text.map((item, index) => {
       return (
-        <div key={index}>{item}</div>
+        <div key={index}>{index + 1}.{item}</div>
       )
     })
     const aaa = (arr: string[]) => {
@@ -313,35 +453,64 @@ class App extends React.Component<IProps, IState> {
       <div className='all flex'>
 
         <div ref={this.echart} style={{ width: '100%', height: '100%' }} />
-        <div className='blockchain flex'>
-          <div className='block'>
-            n
+        <div className='blockchains flex' >
+          <div className={this.state.isAloneBlock ? 'blockchain flex' : 'disappear'} >
+            <div className='block'>
+              n
           </div>
-          <div className='line' />
-          <div className='block'>
-            n+1
+            <div className='line' />
+            <div className='block'>
+              n+1
           </div>
-          <div className='line' />
-          <div className='block'>
-            n+2
+            <div className='line' />
+            <div className='block'>
+              n+2
           </div>
-          <div className='line' />
-          <div className='block'>
-            ...
+            <div className='line' />
+            <div className='block'>
+              ...
           </div>
-          <div className='line' />
-          <div className='block'>
-            m
+            <div className='line' />
+            <div className='block'>
+              m
           </div>
-          <div className={this.state.newBlock ? 'line' : 'disappear'} />
-          <div className={this.state.newBlock ? 'block' : 'disappear'} >
-            m+1
+            <div className={this.state.baxiNewBlock ? 'line' : 'disappear'} />
+            <div style={{ lineHeight: '25px' }} className={this.state.baxiNewBlock ? 'block' : 'disappear'} >
+              m+1 block:p
+            </div>
+          </div>
+          <div className='blockchain flex'>
+            <div className='block'>
+              n
+          </div>
+            <div className='line' />
+            <div className='block'>
+              n+1
+          </div>
+            <div className='line' />
+            <div className='block'>
+              n+2
+          </div>
+            <div className='line' />
+            <div className='block'>
+              ...
+          </div>
+            <div className='line' />
+            <div className='block'>
+              m
+          </div>
+            <div className={this.state.newBlock ? 'line' : 'disappear'} />
+            <div style={{ lineHeight: '25px' }} className={this.state.newBlock ? 'block' : 'disappear'} >
+              m+1 block:q
+            </div>
+
           </div>
         </div>
+
         <div className='text'>
           {textElement}
         </div>
-        <div className='memory'>
+        <div className='memory flex'>
           {memoryElement}
         </div>
         <div className='buttonGroup'>
@@ -354,11 +523,18 @@ class App extends React.Component<IProps, IState> {
           </div>
 
           <div className={`buttons flex ${buttonIndex !== 1 ? 'disappear' : ''}`}>
-            <Button type='primary'>鹅厂出块</Button>
-            <Button type='primary'>猪厂出块</Button>
+            <Button type='primary' onClick={this.qq}>鹅厂出块</Button>
           </div>
           <div className={`buttons flex ${buttonIndex !== 2 ? 'disappear' : ''}`}>
             <Button type='primary'>分叉</Button>
+          </div>
+        </div>
+        <div className='buttonsType'>
+          <div>
+            <Button onClick={this.step0}>普通模式</Button>
+          </div>
+          <div>
+            <Button onClick={this.step1}>充值模式</Button>
           </div>
         </div>
       </div>)
