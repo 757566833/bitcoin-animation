@@ -6,6 +6,7 @@ import {
 // ref: https://umijs.org/config/
 const config: IConfig = {
   treeShaking: true,
+  hash:true,
   // routes: [
   //   {
   //     path: '/',
