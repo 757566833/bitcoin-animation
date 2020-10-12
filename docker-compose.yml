@@ -2,10 +2,10 @@ version: '3'
 services:
   web:
     restart: always
-    image: node:latest
+    image: node:12.19.0
     working_dir: /src
     ports:
-    - "3000:3000"
+    - "10001:10001"
     volumes:
-    - ../:/src
+    - ./:/src
     entrypoint: bash -c "npm install -production && node bit-animation.js"
