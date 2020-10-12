@@ -19,8 +19,10 @@
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-test-renderer": "^16.0.3",
+    "@types/webpack-bundle-analyzer": "^3.8.0",
     "antd": "^3.25.2",
     "babel-eslint": "^9.0.0",
+    "compression-webpack-plugin": "^6.0.3",
     "echarts": "^4.5.0",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
@@ -39,7 +41,8 @@
     "umi": "^2.9.0",
     "umi-plugin-auto": "^0.0.28",
     "umi-plugin-react": "^1.8.0",
-    "umi-types": "^0.3.0"
+    "umi-types": "^0.3.0",
+    "webpack-bundle-analyzer": "^3.9.0"
   },
   "lint-staged": {
     "src/*.{ts,tsx}": [

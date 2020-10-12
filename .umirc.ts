@@ -1,9 +1,12 @@
 import { IConfig } from 'umi-types';
-// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import webpack from 'webpack'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+const CompressionPlugin = require('compression-webpack-plugin');
 import {
   memoryState, setMemory
 } from './config/auto'
 // ref: https://umijs.org/config/
+const env = process.env.NODE_ENV
 const config: IConfig = {
   treeShaking: true,
   hash:true,
@@ -17,6 +20,30 @@ const config: IConfig = {
   //   }
   // ],
   disableCSSModules: true,
+  chainWebpack: function (config) {
+    if (env === 'production') {
+      config.merge({
+        externals: {
+          'react': 'React',
+          'react-dom': 'ReactDOM',
+          //   // 'react-router-dom': 'ReactRouterDOM',
+          'antd': 'antd',
+          'moment': 'moment'
+        },
+        plugin: {
+          'analazy': {
+            plugin: new BundleAnalyzerPlugin({ analyzerHost: '0.0.0.0', analyzerMode: process.env.UNANALYZE ? 'disabled' : 'server' }),
+          },
+          'Replacement': {
+            plugin: new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
+          },
+          'CompressionPlugin': {
+            plugin: new CompressionPlugin()
+          }
+        }
+      })
+    }
+  },
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
