@@ -23,13 +23,13 @@ const config: IConfig = {
   chainWebpack: function (config) {
     if (env === 'production') {
       config.merge({
-        externals: {
-          'react': 'React',
-          'react-dom': 'ReactDOM',
-          //   // 'react-router-dom': 'ReactRouterDOM',
-          'antd': 'antd',
-          'moment': 'moment'
-        },
+        // externals: {
+        //   'react': 'React',
+        //   'react-dom': 'ReactDOM',
+        //   //   // 'react-router-dom': 'ReactRouterDOM',
+        //   'antd': 'antd',
+        //   'moment': 'moment'
+        // },
         plugin: {
           'analazy': {
             plugin: new BundleAnalyzerPlugin({ analyzerHost: '0.0.0.0', analyzerMode: process.env.UNANALYZE ? 'disabled' : 'server' }),
